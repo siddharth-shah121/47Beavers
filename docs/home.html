@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>47 Beavers</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: rgb(0, 60, 125);
+            --secondary: rgb(85, 70, 50);
+            --accent: rgb(0, 106, 255);
+            --light: rgb(50, 95, 255);
+            --dark: rgb(0, 50, 140);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, saSns-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: #333;
+        }
+
+        nav {
+            background-color: var(--primary);
+            padding: 1.5rem 2rem;
+            position: fixed;
+            top: 4%;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            height: 100px;
+            border-radius: 50px;
+            width: 95%;
+            display: flex;
+            align-items: center;
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .logo {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo img {
+            height: 100px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 1.25rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('teamPhoto.png') center 0%/cover;
+            color: white;
+            text-align: center;
+            padding: 18rem 2rem;
+            min-height: 100vh;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 100%;
+            margin: 0 auto 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: rgb(110, 100, 80);
+            transform: translateY(-2px);
+        }
+
+        section {
+            padding: 5rem 5%;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary);
+            position: relative;
+        }
+
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background-color: var(--accent);
+            margin: 1rem auto 0;
+        }
+
+        .about {
+            background-color: #f9f9f9;
+        }
+
+        .team-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .info-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .info-card i {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .robots-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(25%, 1fr));
+            gap: 3.5rem;
+            margin-top: 2rem;
+        }
+
+        .robot-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .robot-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .robot-img {
+            height: 200px;
+            background: #ddd;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .robot-info {
+            padding: 1.5rem;
+        }
+
+        .robot-info h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .robot-card-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .robot-card {
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .robot-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .sponsors {
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+
+        .sponsor-logos {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .sponsor-logo {
+            height: 80px;
+            width: auto;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+
+        .sponsor-logo:hover {
+            opacity: 1;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-info {
+            margin-bottom: 2rem;
+        }
+
+        .contact-info i {
+            color: var(--accent);
+            margin-right: 0.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: var(--primary);
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--accent);
+        }
+
+        footer {
+            background-color: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            section {
+                padding: 3rem 5%;
+            }
+        }
+    </style>
+</head>
+<body>
+<nav>
+    <div class="container">
+        <a href="#" class="logo">
+            <img src="logo.png" alt="47 Beavers Logo" style="margin-left: 0%;">
+            Team 47 Beavers
+        </a>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#members">Members</a>
+            <a href="#robots">Robots</a>
+            <a href="#sponsors">Sponsors</a>
+            <a href="#contact">Join</a>
+        </div>
+    </div>
+</nav>
+<section id="home" class="hero">
+    <h1>Welcome to Team 47 Beavers</h1>
+    <p>Inspiring young minds through robotics and technology. Competing in FIRST Tech Challenge to build a better future.</p>
+    <a href="#about" class="btn">Learn More</a>
+</section>
+
+<section id="about" class="about">
+    <h2 class="section-title">About Our Team</h2>
+    <div class="team-info">
+        <div class="info-card">
+            <i class="wfas fa-arrows-alt"></i>
+            <h3>Outreach</h3>
+            <p>We conduct outreach events locally in our community, and globally, promoting and teaching STEM, making it more easily accesssable for all.</p>
+        </div>
+        <div class="info-card">
+            <i class="fas fa-users"></i>
+            <h3>Our Team</h3>
+            <p>8 members strong, we are a group of students from multiple grade levels and technical backgrounds, working together to build something extraordinary.</p>
+        </div>
+        <div class="info-card">
+            <i class="fas fa-trophy"></i>
+            <h3>Awards</h3>
+            <p>From Inspire to Judges Award, we have won many awards in FTC for our innovation, design, and our work to promote STEM around the world.</p>
+        </div>
+    </div>
+</section>
+
+<section id="robots">
+    <h2 class="section-title">Our Robots</h2>
+    <div class="robots-grid">
+        <a href="carbon14.html" class="robot-card-link">
+            <div class="robot-card">
+                <div class="robot-img" style="background-image: url(carbon14.png); background-size: cover; background-position: 0% 35%;"></div>
+                <div class="robot-info">
+                    <h3>Carbon14 - DECODE 2025</h3>
+                    <p>Our latest competition robot designed for the current FTC season with advanced autonomous capabilities.</p>
+                </div>
+            </div>
+        </a>
+        <div class="robot-card">
+            <div class="robot-img" style="background-image: url('https://via.placeholder.com/400x300')"></div>
+            <div class="robot-info">
+                <h3>BeaverBot 2024</h3>
+                <p>Last season's robot featuring innovative mechanisms and reliable performance.</p>
+            </div>
+        </div>
+        <div class="robot-card">
+            <div class="robot-img" style="background-image: url('https://via.placeholder.com/400x300')"></div>
+            <div class="robot-info">
+                <h3>BeaverBot 2023</h3>
+                <p>Our first competition robot that started it all, showcasing our team's growth and learning.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="sponsors" class="sponsors">
+    <h2 class="section-title">Our Sponsors</h2>
+    <p>We're grateful for the support of our sponsors who make our team's journey possible.</p>
+    <div class="sponsor-logos">
+        <img src="https://via.placeholder.com/150x80" alt="Sponsor 1" class="sponsor-logo">
+        <img src="https://via.placeholder.com/150x80" alt="Sponsor 2" class="sponsor-logo">
+        <img src="https://via.placeholder.com/150x80" alt="Sponsor 3" class="sponsor-logo">
+        <img src="https://via.placeholder.com/150x80" alt="Sponsor 4" class="sponsor-logo">
+    </div>
+    <a href="#contact" class="btn" style="margin-top: 2rem;">Become a Sponsor</a>
+</section>
+
+<section id="contact">
+    <h2 class="section-title">Contact Us</h2>
+    <div class="contact-grid">
+        <div>
+            <h3>Get In Touch</h3>
+            <div class="contact-info">
+                <p><i class="fas fa-envelope"></i> ftcteam13100@gmail.com</p>
+                <p><i class="fas fa-school"></i> Germantown, Maryland</p>
+                <p><i class="fas fa-users"></i> #47Beavers13100</p>
+            </div>
+            <div class="social-links">
+                <a href="#" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.instagram.com/ftc47beavers/#" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="#" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            </div>
+        </div>
+        <div>
+            <h3 style="margin-bottom:2%;">Interested In Joining?</h3>
+            <p style="margin-bottom:2%;">Sign up for an interview here</p>
+            <form id="contact-form">
+                <div style="margin-bottom: 1rem;">
+                    <input type="text" placeholder="Your Name (First & Last)" style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 4px;">
+                </div>
+                <div style="margin-bottom: 1rem;">
+                    <input type="email" placeholder="Your Email" style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 4px;">
+                </div>
+                <div style="margin-bottom: 1rem;">
+                    <textarea placeholder="Anyhting else you want to share? (optional)" rows="5" style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 4px; resize: vertical;"></textarea>
+                </div>
+                <button type="submit" class="btn" style="border: none; cursor: pointer;">Sign Up</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>&copy; 2025 Team 47 Beavers FTC. All rights reserved.</p>
+    <p style="margin-top: 1rem; font-size: 0.9rem; color: #bbb;">
+        <a href="#" style="color: #bbb; text-decoration: none; margin: 0 10px;">Privacy Policy</a> |
+        <a href="#" style="color: #bbb; text-decoration: none; margin: 0 10px;">Terms of Service</a>
+    </p>
+</footer>
+
+<script>
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you soon.');
+            this.reset();
+        });
+    }
+</script>
+</body>
+</html>
